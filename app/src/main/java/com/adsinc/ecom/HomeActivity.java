@@ -157,7 +157,14 @@ public class HomeActivity extends AppCompatActivity {
             textview1.setText(_data.get((int)_position).get("name").toString());
             ImageView imageView = _view.findViewById(R.id.image);
             imageView.setImageResource(R.drawable.shop);
-            Glide.with(getApplicationContext()).load(_data.get((int)_position).get("image").toString()).into(imageView);
+            try {
+
+
+                Glide.with(getApplicationContext()).load(_data.get((int) _position).get("image").toString()).into(imageView);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
             RecyclerView.LayoutParams _lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             _view.setLayoutParams(_lp);
         }
