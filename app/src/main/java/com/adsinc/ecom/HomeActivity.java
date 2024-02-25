@@ -27,7 +27,6 @@ public class HomeActivity extends AppCompatActivity {
     private ArrayList<HashMap<String, Object>> list = new ArrayList<>();
     private ArrayList<HashMap<String, Object>> list2 = new ArrayList<>();
     private RecyclerView recyclerView1, recyclerView2;
-
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
@@ -42,8 +41,6 @@ public class HomeActivity extends AppCompatActivity {
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.setStatusBarColor(Color.parseColor("#f5f9f9"));}
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-
-        // Adding each category to the list
         list.add(createCategory("Home"));
         list.add(createCategory("Skincare"));
         list.add(createCategory("Tea"));
@@ -69,16 +66,13 @@ public class HomeActivity extends AppCompatActivity {
         list.add(createCategory("Religious Items"));
         list.add(createCategory("Perfume"));
         list2.add(createproduct("Mama Instant Oriental Kitchen Hot Korean Noodles -85g", "https://desipolska.pl/desi/wp-content/uploads/2024/02/mama-oriental-kitchen-hot-korean.jpg", "1000"));
-        // Assuming you would want to do something with the list here,
-        // for example printing each category.
         for (HashMap<String, Object> category : list) {
             System.out.println(category.get("category"));
         }
         recyclerView1.setAdapter(new Recyclerview1Adapter(list));
         recyclerView1.setLayoutManager(new LinearLayoutManager(HomeActivity.this, LinearLayoutManager.HORIZONTAL, false));
-        recyclerView2.setAdapter(new Recyclerview2Adapter(list2));
-        recyclerView2.setLayoutManager(new GridLayoutManager(this, 2));
-
+        recyclerView2.setAdapter(new Recyclerview2Adapter(list));
+        recyclerView2.setLayoutManager(new LinearLayoutManager(HomeActivity.this, LinearLayoutManager.VERTICAL, false));
     // Helper method to create category map
 
     }
@@ -124,7 +118,7 @@ public class HomeActivity extends AppCompatActivity {
                 imageView.setImageResource(R.drawable.shop);
                 imageView.setColorFilter(getResources().getColor(R.color.base1));}
             textview1.setText(_data.get((int)_position).get("category").toString());
-            RecyclerView.LayoutParams _lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            RecyclerView.LayoutParams _lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             _view.setLayoutParams(_lp);
         }
         @Override
@@ -145,28 +139,51 @@ public class HomeActivity extends AppCompatActivity {
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater _inflater = getLayoutInflater();
-            View _v = _inflater.inflate(R.layout.products, null);
-            RecyclerView.LayoutParams _lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            _v.setLayoutParams(_lp);
+            View _v = _inflater.inflate(R.layout.horizontalrv, null);
+
             return new ViewHolder(_v);
         }
         @Override
         public void onBindViewHolder(ViewHolder _holder, final int _position) {
             View _view = _holder.itemView;
-            final TextView textview1 = _view.findViewById(R.id.name);
-            textview1.setText(_data.get((int)_position).get("name").toString());
-            ImageView imageView = _view.findViewById(R.id.image);
-            imageView.setImageResource(R.drawable.shop);
-            try {
-
-
-                Glide.with(getApplicationContext()).load(_data.get((int) _position).get("image").toString()).into(imageView);
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-
-            RecyclerView.LayoutParams _lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            final RecyclerView recyclerView = _view.findViewById(R.id.recyclerView);
+            final TextView name = _view.findViewById(R.id.name);
+            name.setText(_data.get((int)_position).get("category").toString());
+            recyclerView.setAdapter(new Recyclerview3Adapter(list));
+            recyclerView.setLayoutManager(new LinearLayoutManager(HomeActivity.this, LinearLayoutManager.HORIZONTAL, false));
+            RecyclerView.LayoutParams _lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             _view.setLayoutParams(_lp);
+        }
+        @Override
+        public int getItemCount() {
+            return _data.size();
+        }
+        public class ViewHolder extends RecyclerView.ViewHolder {
+            public ViewHolder(View v) {
+                super(v);
+            }
+        }
+    }
+    public class Recyclerview3Adapter extends RecyclerView.Adapter<Recyclerview3Adapter.ViewHolder> {
+        ArrayList<HashMap<String, Object>> _data;
+        public Recyclerview3Adapter(ArrayList<HashMap<String, Object>> _arr) {
+            _data = _arr;
+        }
+        @Override
+        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            LayoutInflater _inflater = getLayoutInflater();
+            View _v = _inflater.inflate(R.layout.products, null);
+
+               /* .placeholder(drawable)*/
+
+           /* RecyclerView.LayoutParams _lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            _v.setLayoutParams(_lp);*/
+            return new ViewHolder(_v);
+        }
+        @Override
+        public void onBindViewHolder(ViewHolder _holder, final int _position) {
+            View _view = _holder.itemView;
+
         }
         @Override
         public int getItemCount() {
