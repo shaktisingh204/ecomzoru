@@ -1,7 +1,144 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white">
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:layout_marginTop="4dp">
+        <aglibs.loading.skeleton.layout.SkeletonRelativeLayout
+            android:id="@+id/skeletonLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|center_horizontal"
+            app:clipToText="false">
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/shop" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:paddingStart="10dp"
+        android:text="Dolo Paracetamol Tablets (650 mg)"
+        android:textSize="18sp"
+        android:fontFamily="@font/okra_semibold"
+        android:textColor="@color/black"
+        android:textStyle="bold"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="4dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingStart="10dp"
+            android:text="1 pack (15 pieces)"
+            android:fontFamily="@font/okra_semibold"
+            android:textColor="@color/base5"
+            android:textSize="16sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="₹33"
+            android:textSize="16sp"
+            android:textColor="@color/base1"/>
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Similar products"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:fontFamily="@font/okra_semibold"
+        android:textSize="16sp"/>
+        </LinearLayout>
+    </aglibs.loading.skeleton.layout.SkeletonRelativeLayout>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:layout_marginHorizontal="8dp"
+        android:orientation="horizontal"
+        android:nestedScrollingEnabled="true"
+        android:id="@+id/recyclerView"
+        android:scrollbars="horizontal"
+        android:background="@color/white"
+        android:layout_marginTop="10dp"
+        />
+
+
+    <!-- Similar Products List - This can be a horizontal RecyclerView -->
+    <!-- Placeholder for RecyclerView or a horizontal LinearLayout with ImageViews and TextViews for similar products -->
+
+    <!-- Add to Cart Button -->
+
+</LinearLayout>
+</ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        android:translationY="-70dp"
+        android:elevation="8dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingVertical="8dp"
+            android:paddingStart="15dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1 pack (15 pieces)"
+                android:fontFamily="@font/okra_semibold"
+                android:textColor="@color/base5"
+                android:textSize="16sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MRP: ₹33"
+                android:textSize="18sp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/okra_bold"
+                android:textColor="@color/base1"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:background="@drawable/roundbutton"
+            android:padding="10dp"
+            android:layout_marginHorizontal="8dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ADD TO CART"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:padding="8dp"
+                android:fontFamily="@font/okra_semibold"
+                android:textStyle="bold"/>
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>

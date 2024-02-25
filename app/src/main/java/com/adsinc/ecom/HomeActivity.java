@@ -1,5 +1,6 @@
 package com.adsinc.ecom;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -76,7 +77,7 @@ public class HomeActivity extends AppCompatActivity {
     // Helper method to create category map
 
     }
-    private static HashMap<String, Object> createCategory(String categoryName) {
+    public static HashMap<String, Object> createCategory(String categoryName) {
         HashMap<String, Object> category = new HashMap<>();
         category.put("category", categoryName);
         return category;
@@ -173,7 +174,13 @@ public class HomeActivity extends AppCompatActivity {
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater _inflater = getLayoutInflater();
             View _v = _inflater.inflate(R.layout.products, null);
-
+            _v.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(HomeActivity.this, buyproduct.class);
+                    startActivity(intent);
+                }
+            });
                /* .placeholder(drawable)*/
 
            /* RecyclerView.LayoutParams _lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);

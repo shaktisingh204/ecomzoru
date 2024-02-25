@@ -79,6 +79,7 @@
                 android:orientation="horizontal"
                 android:id="@+id/recyclerView"
                 android:scrollbars="horizontal"
+                android:layout_marginHorizontal="10dp"
                 android:background="@color/background"
                 android:layout_marginTop="10dp"
                 />

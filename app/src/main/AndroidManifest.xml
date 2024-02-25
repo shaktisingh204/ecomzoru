@@ -21,6 +21,8 @@
         </activity>
         <activity android:name=".HomeActivity"
             android:exported="true"/>
+        <activity android:name=".buyproduct"
+            android:exported="true"/>
     </application>
 
 </manifest>
